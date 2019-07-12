@@ -2,7 +2,7 @@ import { takeLatest, call, put } from "redux-saga/effects";
 import axios from "axios";
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
-export function* watcherSaga() {
+export default function* () {
     yield takeLatest("API_CALL_REQUEST", workerSaga);
 }
 
@@ -21,10 +21,10 @@ function* workerSaga() {
         const dog = response.data.message;
 
         // dispatch a success action to the store with the new dog
-        yield put({ type: "API_CALL_SUCCESS", dog });
+        yield put({ type: "API_CALL_SUCCESS", payload: dog });
 
     } catch (error) {
         // dispatch a failure action to the store with the error
-        yield put({ type: "API_CALL_FAILURE", error });
+        yield put({ type: "API_CALL_FAILURE", payload: error });
     }
 }

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 
 import reducer from "./rootReducer";
-import { watcherSaga } from "../sagas";
+import rootSaga from "../sagas";
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
@@ -18,6 +18,6 @@ const store = createStore(
 );
 
 // run the saga
-sagaMiddleware.run(watcherSaga);
+sagaMiddleware.run(rootSaga);
 
 export default store;
